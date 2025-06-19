@@ -83,7 +83,7 @@
 
   <div class="image-reveal" id="finalImage">
     <img src="7FB8D8FA-4D63-4F10-BB9A-DC62FB29A900.png" alt="CATZ Go-To Marketer Image" />
-    <div class="footer-note">Powered by CATZ 🐈 // Your Go-To Web3 Marketer</div>
+    <div class="footer-note">Powered by CATZ 🐈 // Redirecting to HQ...</div>
   </div>
 
   <script>
@@ -135,6 +135,10 @@
 
     function revealImage() {
       finalImage.style.display = 'flex';
+      // Redirect after 4 seconds
+      setTimeout(() => {
+        window.location.href = 'https://catz-one.vercel.app';
+      }, 4000);
     }
 
     // Start simulation
