@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CATZ Terminal 🐈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background: black;
+      color: #00ffcc;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .terminal {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.85);
+      overflow-y: auto;
+      z-index: 1;
+    }
+
+    .line {
+      white-space: pre-wrap;
+      margin-bottom: 8px;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 1.2em;
+      background: #00ffcc;
+      animation: blink 1s infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .image-reveal {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: black;
+      z-index: 2;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-reveal img {
+      width: 90%;
+      max-width: 900px;
+      border: 4px solid #00ffcc;
+      border-radius: 12px;
+      box-shadow: 0 0 30px #00ffcc;
+    }
+
+    .fade-in {
+      animation: fadeIn 2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal" id="terminal">
+    <div class="line">Loading CATZ OS 🐈 ...</div>
+  </div>
+
+  <div class="image-reveal" id="finalImage">
+    <img src="catz-banner.png" alt="CATZ Go-To Marketer Image" />
+  </div>
+
+  <script>
+    const terminal = document.getElementById('terminal');
+    const finalImage = document.getElementById('finalImage');
+
+    const lines = [
+      "🐾 CATZ Terminal Online...",
+      "🌍 Web3 detected. Marketing signal strong.",
+      "🤖 Initializing Memetics Engine...",
+      "💼 Fetching Collab Database...",
+      "💬 You: 'Next 1000x??'",
+      "🧠 CATZ: 'Only if you post it right.'",
+      "🚗 Starting Engine...",
+      "💸 Simulating Alpha Broadcast...",
+      "✅ Verified: CATZ is your go-to marketer.",
+      "🧪 Injecting vibes...",
+      "⌛ Finishing boot..."
+    ];
+
+    let index = 0;
+
+    function typeLine(text, i = 0, callback) {
+      const line = document.createElement('div');
+      line.className = 'line';
+      terminal.appendChild(line);
+
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          line.textContent += text[i++];
+          terminal.scrollTop = terminal.scrollHeight;
+        } else {
+          clearInterval(interval);
+          if (callback) callback();
+        }
+      }, 40);
+    }
+
+    function nextLine() {
+      if (index < lines.length) {
+        typeLine(lines[index], 0, () => {
+          index++;
+          setTimeout(nextLine, 600);
+        });
+      } else {
+        revealImage();
+      }
+    }
+
+    function revealImage() {
+      finalImage.style.display = 'flex';
+      finalImage.classList.add('fade-in');
+    }
+
+    setTimeout(nextLine, 1000);
+  </script>
+</body>
+</html>
